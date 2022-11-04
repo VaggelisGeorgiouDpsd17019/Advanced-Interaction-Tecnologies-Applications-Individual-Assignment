@@ -12,7 +12,7 @@
 
 # 1st Deliverable
 
-Υποερώτημα 1 : Video Capture
+Υποερώτημα 1 : Video Capture.
 Mελετήστε το online tutorial για το video και το Κεφάλαιο 16 από το βιβλίο Learning Processing, 2nd Edition και συνδέστε το Prossessing με την κάμερα ώστε αυτή να καταγράφει βίντεο. Πρακτικά, θα πρέπει να τρέξετε το Example 16-1 από το Learning Processing, 2nd Edition:
 
 Στόχος του Υποερωτήματος 1 αποτελεί η σύνδεση της κάμερας του υπολογιστή με το Processing.
