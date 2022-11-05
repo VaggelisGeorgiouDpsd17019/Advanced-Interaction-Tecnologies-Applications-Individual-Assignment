@@ -3,7 +3,7 @@
 ### First and Last Name: Ευάγγελος Γεωργίου
 ### University Registration Number: dpsd17019
 ### GitHub Personal Profile: VaggelisGeorgiouDpsd17019
-### Advanced Interaction Tecnologies & Applications Github Personal Repository: xxx
+### Advanced Interaction Tecnologies & Applications Github Personal Repository: VaggelisGeorgiouDpsd17019/Advanced-Interaction-Tecnologies-Applications-Individual-Assignment
 
 # Introduction
 
