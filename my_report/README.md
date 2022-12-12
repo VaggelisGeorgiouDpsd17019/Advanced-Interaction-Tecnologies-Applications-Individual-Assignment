@@ -251,6 +251,63 @@ __Υποερώτημα 1β: Example 16.12. Background Remove - Video__
 ![image](https://user-images.githubusercontent.com/115811465/207108922-16387d41-d915-4a5e-8572-4093f8c31f77.png)
 
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+__Υποερώτημα 2: Motion detection - Άσκηση 16.7.__
+
+Για την υλοποίηση της άσκησης 16.7. χρησιμοποίησα ως βάση το παράδειγμα 16.11. Συγκεκριμένα άνοιξα το παράδειγμα 16.11. στην Processing και στη συνέχεια έκανα τις απαραίτητες (α) προσαρμογές του κώδικα του παραδείγματος 16.11. και (β) προσθήκες από το παράδειγμα 16.13.
+
+Αρχικά διαγράφω πάνω από την setup την ίδρυση της μεταβλητής trackcolor, και κατόπιν την ανάθεση της τιμής της μέσα στην setup, καθώς στόχος της άσκησης δεν είναι να εντοπιστεί συγκεκριμένο χρώμα, αλλά να εντοπιστεί κίνηση.
+
+Προσθέτω πάνω από την setup τις γραμμές κώδικα PImage prevFrame; Και float threshold = 150;, οι οποίες προέρχονται από το παράδειγμα 16.13.
+
+![image](https://user-images.githubusercontent.com/115811465/207115074-de09b8b5-b3f6-435a-96f5-d74f2cd292ed.png)
+
+![image](https://user-images.githubusercontent.com/115811465/207115097-0098f9ed-9f3c-4226-abe5-83f4dd4707bf.png)
+
+Έπειτα προσθέτω στην συνάρτηση void captureEvent(Capture video) {…} τις γραμμές κώδικα: prevFrame.copy(video, 0, 0, video.width, video.height, 0, 0, video.width, video.height); και  prevFrame.updatePixels();, οι οποίες προέρχονται από το παράδειγμα 16.13.
+
+![image](https://user-images.githubusercontent.com/115811465/207115250-107abd78-3298-415e-8236-32886e9096fd.png)
+
+Στην εκφώνηση της άσκησης 16.7. ζητείται να εντοπιστεί η average κίνηση.
+Στις σελίδες 345 και 346 του βιβλίου “Learning Processing, 2nd Edition.” αναφέρεται, πως για να βρεθεί η average κίνηση χρειάζεται να εντάξουμε στον κώδικά μας την παρακάτω σχέση: Average Motion = Total Motion / Total Number of Pixels. Δηλαδή η average κίνηση ισούται με την κίνηση που εντοπίζεται σε κάθε pixel, διά το συνολικό αριθμό των pixels. 
+
+Έτσι χρειάζεται να ιδρύσουμε, μέσα στη συνάρτηση draw, τις μεταβλητές που θα βρίσκουν την συνολική κίνηση σε οποιοδήποτε σημείο. Επειδή κάθε σημείο έχει μια θέση x και μια θέση y ιδρύουμε τις μεταβλητές float sumX = 0; Και float sumY = 0; Ακόμα ιδρύουμε την μεταβλητή motionCount = 0;  Επίσης προσθέτουμε τη γραμμή κώδικα: prevFrame.loadPixels(); η οποία προέρχεται από το παράδειγμα 16.13.
+
+![image](https://user-images.githubusercontent.com/115811465/207115388-0a80591f-a4e9-4a26-a3b5-e04cfe997365.png)
+
+Στη συνέχεια αντικαθιστώ την for για το x και την for για το y του παραδείγματος 16.11. με τις αντίστοιχες for για τα x και y του παραδείγματος 16.13.
+Ακόμα, προσαρμόζω την if – else του παραδείγματος 16.13. Συγκεκριμένα: (α) διαγράφω την else και (β) Στην if αντικαθιστώ το if (diff > threshold) {pixels[loc] = color(0);} με: 
+if (diff > threshold) { sumX += x;
+     	       		sumY += y;
+     	       		motionCount++;
+  	    	      }
+		      
+Ο παραπάνω κώδικας της if, μεταφράζεται ως εξής: Εάν η διαφορά των previous απ’ των current pixels είναι μεγαλύτερη του threshold (δηλ. αν υπάρχει κίνηση), τότε πρόσθεσε όλα τα x και όλα τα y. Οι παραπάνω 3 αλλαγές (διαγραφή των for και αλλαγή της if – else) φαίνονται και στις επόμενες 2 εικόνες.
+
+![image](https://user-images.githubusercontent.com/115811465/207115671-de6e08b5-6d8d-4383-8897-f70a0fc5245b.png)
+
+![image](https://user-images.githubusercontent.com/115811465/207115717-54a0aa3a-2180-49b6-a8a8-f384263eeef8.png)
+
+Έπειτα διαγράφουμε την if (worldRecord < 10) {// Draw a circle at the tracked pixel…} του παραδείγματος 16.11. που βρίσκεται μέσα στη draw. Ακόμα διαγράφουμε τη συνάρτηση mousePressed(){…} του παραδείγματος 16.11. που βρίσκεται εκτός της draw.
+
+Μέσα στη draw προσθέτουμε τον εξής κώδικα:
+float avgX = sumX / motionCount; 
+float avgY = sumY / motionCount; 
+ // Draw a circle based on average motion
+  smooth();
+  stroke(230,250,50);
+  noFill();
+  ellipse(avgX, avgY, 35, 35);
+}
+
+Σχόλια – Παρατηρήσεις: Η τελευταία προσθήκη στο κώδικα: float avgX = sumX / motionCount;…ellipse(avgX,avgY,35,35); } προήλθε από την έτοιμη λύση της άσκησης 16.7. που βρίσκεται στον σύνδεσμο:  http://learningprocessing.com/exercises/chp16/exercise-16-07-track-motion
+
+![image](https://user-images.githubusercontent.com/115811465/207115886-7907883a-8210-4964-afe3-4c320a8506f5.png)
+
+![image](https://user-images.githubusercontent.com/115811465/207115974-66f4407d-9e2c-4224-abc0-d22a4d8059b4.png)
+
+![image](https://user-images.githubusercontent.com/115811465/207116026-7e9d68c8-ed97-46c0-aa9e-29a7088da11d.png)
 
 
 
