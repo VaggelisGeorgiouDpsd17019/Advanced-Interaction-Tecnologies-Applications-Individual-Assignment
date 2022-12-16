@@ -385,7 +385,8 @@ __Υποερώτημα 4: Object Tracking - Άσκηση  16.5.__
 
 Από την άλλη, το ποντίκι μπορεί να οδηγήσει σε πιο ακριβή αποτελέσματα, όσον αφορά τον εντοπισμό, αλλά είναι περισσότερο time - consuming, και δεν μπορεί να εντοπίζει πολλά αντικείμενα ταυτόχρονα.
 
-![image](https://user-images.githubusercontent.com/115811465/207397917-303af6ff-2257-4745-87af-a2cb68043364.png)
+![deineMutter_thetikaArnitika](https://user-images.githubusercontent.com/115811465/208174313-f7b846fb-4cd0-42e9-8e57-851d976974b9.png)
+
 
 
 
